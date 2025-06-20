@@ -52,11 +52,22 @@ function onPageLoad() {
     if (data) {
       var locations = data.locations;
       var uiLocations = document.getElementById("uiLocations");
+
+      // Clear and enable the dropdown
       $('#uiLocations').empty();
+      uiLocations.disabled = false;
+
+      // Add default placeholder again
+      $('#uiLocations').append(new Option("Choose a Location", "", true, true)).prop("disabled", true);
+
+      // Add actual options
       for (var i in locations) {
         var opt = new Option(locations[i]);
         $('#uiLocations').append(opt);
       }
+
+      // Re-enable user selection
+      $('#uiLocations').prop("disabled", false);
     }
   });
 }
